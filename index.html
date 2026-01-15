@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Pomodoro Hours Tracker</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+  <h1>🍅 Pomodoro Tracker</h1>
+  <button onclick="toggleDarkMode()">🌙</button>
+</header>
+
+<div class="container">
+
+  <!-- Pomodoro -->
+  <div class="card">
+    <h2>Pomodoro</h2>
+
+    <label>Task</label>
+    <input id="pomodoroTask" placeholder="Task name">
+
+    <label>Minutes</label>
+    <input type="number" id="workMinutes" value="25" min="1">
+
+    <div id="timer">25:00</div>
+
+    <button onclick="startPomodoro()">Start</button>
+    <button onclick="resetPomodoro()">Reset</button>
+  </div>
+
+  <!-- Manual Log -->
+  <div class="card">
+    <h2>Manual Log</h2>
+    <input id="task" placeholder="Task name">
+    <input type="number" id="hours" placeholder="Hours">
+    <button onclick="logHours()">Add</button>
+  </div>
+
+
+  <!-- Records -->
+  <div class="card full">
+    <h2>📆 Daily Records</h2>
+    <button onclick="exportCSV()">📥 Export CSV</button>
+    <table>
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>Task</th>
+          <th>Hours</th>
+        </tr>
+      </thead>
+      <tbody id="records"></tbody>
+    </table>
+  </div>
+
+
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>
