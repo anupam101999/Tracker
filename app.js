@@ -183,3 +183,34 @@ document.addEventListener("DOMContentLoaded", () => {
   updateTimerUI();
   renderAll();
 });
+
+let audioUnlocked = false;
+const alarm = new Audio('alarm.mp3');
+
+function unlockAudio() {
+  if (!audioUnlocked) {
+    alarm.play().then(() => {
+      alarm.pause();
+      alarm.currentTime = 0;
+      audioUnlocked = true;
+    }).catch(() => {});
+  }
+}
+
+alarm.play();
+
+if (Notification.permission === "granted") {
+  new Notification("🍅 Pomodoro Complete", {
+    body: "Time for a break!"
+  });
+}
+
+if (Notification.permission !== "granted") {
+  Notification.requestPermission();
+}
+
+document.addEventListener("visibilitychange", () => {
+  if (document.visibilityState === "visible" && pomodoroCompleted) {
+    // optionally skip sound or show toast instead
+  }
+});
